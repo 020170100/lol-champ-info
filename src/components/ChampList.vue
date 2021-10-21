@@ -5,12 +5,15 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th>id</th>
+        <th>Title</th>
+        <th>Tags</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-          <td></td>
+      <tr v-for="champ in champions" :key="champ.id">
+          <td>{{champ.id}}</td>
+          <td>{{champ.title}}</td>
+          <td>{{champ.tags}}</td>
       </tr>
     </tbody>
   </table>
@@ -33,10 +36,10 @@ export default {
   methods: {
     async fetchData(){
       try{
-        var response = await fetch("http://ddragon.leagueoflegends.com/cdn/11.21.1/data/en_US/champion.json")
+        var response = await fetch("http://localhost:3000/data")
         var json = await response.json()
         console.log(json)
-        this.champions = json        
+        this.champions = json     
       }catch(e){
         console.log(e)
       }
