@@ -1,4 +1,7 @@
-# lol-champ-info
+# Leage of Legends Champion Info
+
+## Overview
+This is small school project, where creating a small web-app displaing League of Legends champions is our goal.
 
 ## Project setup
 ```
