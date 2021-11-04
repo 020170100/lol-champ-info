@@ -1,27 +1,39 @@
 <template>
+<div id="table">
   <p>League of Legends Champion Table</p>
-  <table>
-    <caption>Champions</caption>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Title</th>
-        <th>Tags</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="champ in champions" :key="champ.id">
-          <td>{{champ.id}}</td>
-          <td>{{champ.title}}</td>
-          <td>{{champ.tags}}</td>
-      </tr>
-    </tbody>
-  </table>
+    <table>
+      <caption>Champions</caption>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Title</th>
+          <th>Tags</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="champ in champions"  @click="showDetail(champ.id)" :key="champ.id">
+            <td>{{champ.id}}</td>
+            <td>{{champ.title}}</td>
+            <td>{{champ.tags}}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+<div id="detail">
+  <DetailComp></DetailComp>
+</div>
 </template>
 
+  
+
 <script>
+import DetailComp from './Detail.vue'
+
 export default {
   name: 'ChampList',
+  components: {
+    DetailComp
+  },
 
   created: function(){
       this.fetchData()
@@ -44,6 +56,11 @@ export default {
         console.log(e)
       }
       
+    },
+    
+    showDetail(champid){
+      alert(champid)
+
     },
   },
 }
