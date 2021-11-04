@@ -1,5 +1,5 @@
 <template>
-<div id="table">
+<div>
   <p>League of Legends Champion Table</p>
     <table>
       <caption>Champions</caption>
@@ -19,20 +19,18 @@
       </tbody>
     </table>
 </div>
-<div id="detail">
-  <DetailComp></DetailComp>
-</div>
+<DetailModal v-show="displayModal" @close-modal="displayModal = false"></DetailModal>
 </template>
 
   
 
 <script>
-import DetailComp from './Detail.vue'
+import DetailModal from './DetailModal.vue';
 
 export default {
   name: 'ChampList',
   components: {
-    DetailComp
+    DetailModal
   },
 
   created: function(){
@@ -41,7 +39,8 @@ export default {
 
   data: function(){
     return {
-      champions: []
+      champions: [],
+      displayModal: false,
     };
   },
 
@@ -58,9 +57,9 @@ export default {
       
     },
     
-    showDetail(champid){
-      alert(champid)
-
+    showDetail(champId){
+      this.displayModal = true
+      console.log("clicked: ", champId)
     },
   },
 }
@@ -68,18 +67,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+
 </style>
