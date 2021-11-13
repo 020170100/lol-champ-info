@@ -1,9 +1,9 @@
 <template>
     <div class="modal-wrapper">
         <div class="modal">
-            <h2>Detail</h2>
+            <h2>{{champId}}</h2>
             <div>
-                add Information here!
+                Image, Stats,...
             </div>
             <button @click="$emit('close-modal')">Go back</button>
         </div>
@@ -15,6 +15,13 @@
 <script>
 export default ({
     name: 'DetailModal',
+    props: ['champId'],
+    
+    methods: {
+        setChampInfo(){
+            
+        }
+    },
 })
 </script>
 

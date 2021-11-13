@@ -1,8 +1,7 @@
 <template>
 <div>
-  <p>League of Legends Champion Table</p>
+  <h1>League of Legends Champions</h1>
     <table>
-      <caption>Champions</caption>
       <thead>
         <tr>
           <th>Name</th>
@@ -11,7 +10,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="champ in champions"  @click="showDetail(champ.id)" :key="champ.id">
+        <tr v-for="champ in champions" :key="champ.id" @click="$emit('open-modal', champ.id)">
             <td>{{champ.id}}</td>
             <td>{{champ.title}}</td>
             <td>{{champ.tags}}</td>
@@ -19,19 +18,13 @@
       </tbody>
     </table>
 </div>
-<DetailModal v-show="displayModal" @close-modal="displayModal = false"></DetailModal>
-</template>
 
-  
+</template> 
 
 <script>
-import DetailModal from './DetailModal.vue';
 
 export default {
   name: 'ChampList',
-  components: {
-    DetailModal
-  },
 
   created: function(){
       this.fetchData()
@@ -40,9 +33,9 @@ export default {
   data: function(){
     return {
       champions: [],
-      displayModal: false,
     };
   },
+
 
   methods: {
     async fetchData(){
@@ -50,16 +43,10 @@ export default {
         var response = await fetch("http://localhost:3000/data")
         var json = await response.json()
         console.log(json)
-        this.champions = json     
+        this.champions = json    
       }catch(e){
         console.log(e)
       }
-      
-    },
-    
-    showDetail(champId){
-      this.displayModal = true
-      console.log("clicked: ", champId)
     },
   },
 }
@@ -67,5 +54,21 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+ table{
+   background-color: whitesmoke;
+   width: 75vw;
+   table-layout: fixed;
+   margin-left: auto;
+   margin-right: auto;
+   border-radius: 20px;
+ }
 
+ th{
+   font-size: 20px;
+   height: 5vh;
+ }
+
+ td{
+   height: 2.5vh;
+ }
 </style>
