@@ -1,11 +1,16 @@
 <template>
     <div class="modal-wrapper">
         <div class="modal">
-            <h2>{{champId}}</h2>
+            <h2>{{detailInfo.name}}</h2>
             <div>
-                Image, Stats,...
+                <img :src="detailInfo.big_image_url" alt="big image"><br>
+                <span>Healh: {{detailInfo.hp}}</span><br>
+                <span>Mana: {{detailInfo.mp}}</span><br>
+                <span>Armor: {{detailInfo.armor}}</span><br>                
+                <span>Magic Resistance: {{detailInfo.spellblock}}</span><br>
+                <span>AD: {{detailInfo.attackdamage}}</span>
             </div>
-            <button @click="$emit('close-modal')">Go back</button>
+            <button @click="$emit('close-modal')">Close</button>
         </div>
     </div>
     
@@ -15,13 +20,7 @@
 <script>
 export default ({
     name: 'DetailModal',
-    props: ['champId'],
-    
-    methods: {
-        setChampInfo(){
-            
-        }
-    },
+    props: ['detailInfo'],  
 })
 </script>
 
@@ -45,5 +44,10 @@ export default ({
         margin-top: 10%;
         padding: 60px 0;
         border-radius: 20px;
+    }
+
+    img {
+        height: 35%;
+        width: 35%;
     }
 </style>

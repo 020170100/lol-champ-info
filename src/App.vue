@@ -1,6 +1,6 @@
 <template>
   <champ-list @open-modal="showDetail"></champ-list>
-  <detail-modal :champId = "champId" v-show="displayModal" @close-modal="displayModal = false"></detail-modal>
+  <detail-modal :detailInfo = "champDetails" v-show="displayModal" @close-modal="displayModal = false"></detail-modal>
 </template>
 
 <script>
@@ -18,6 +18,7 @@ export default {
       return {
         displayModal: false,
         champId: "",
+        champDetails: [],
       };
   },
 
@@ -26,8 +27,23 @@ export default {
     showDetail(id){
         this.displayModal = true
         this.champId = id
-        console.log("i was here!", this.champId, id)
-    }
+        this.getDetailInfo(id)
+        console.log("i was here!", this.champId, id)        
+    },
+    
+    async getDetailInfo(id){
+            if(id != this.champDetails.id){
+                try{
+                    let response = await fetch("http://localhost:3000/data/"+id)
+                    let json = await response.json()
+                    console.log(json)
+                    this.champDetails = json
+                    console.log(this.champDetails.name)
+                }catch(e){
+                    console.log(e)
+                }   
+            }
+        }
 
   },
 }

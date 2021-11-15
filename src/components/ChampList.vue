@@ -1,19 +1,13 @@
 <template>
 <div>
-  <h1>League of Legends Champions</h1>
     <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Title</th>
-          <th>Tags</th>
-        </tr>
-      </thead>
+      <caption>League of Legends Champions</caption>
       <tbody>
-        <tr v-for="champ in champions" :key="champ.id" @click="$emit('open-modal', champ.id)">
-            <td>{{champ.id}}</td>
-            <td>{{champ.title}}</td>
-            <td>{{champ.tags}}</td>
+        <tr class="champ-rows" v-for="champ in champions" :key="champ.name" @click="$emit('open-modal', champ.id)">
+            <td class="left-td">
+              <img :src="champ.image_url">
+            </td>
+            <td class="right-td">{{champ.name}}</td>
         </tr>
       </tbody>
     </table>
@@ -40,8 +34,8 @@ export default {
   methods: {
     async fetchData(){
       try{
-        var response = await fetch("http://localhost:3000/data")
-        var json = await response.json()
+        let response = await fetch("http://localhost:3000/data")
+        let json = await response.json()
         console.log(json)
         this.champions = json    
       }catch(e){
@@ -56,19 +50,42 @@ export default {
 <style scoped>
  table{
    background-color: whitesmoke;
-   width: 75vw;
-   table-layout: fixed;
+   width: 50vw;
    margin-left: auto;
    margin-right: auto;
-   border-radius: 20px;
+   border-collapse: collapse;
  }
 
- th{
-   font-size: 20px;
-   height: 5vh;
+ .champ-rows{
+    border-bottom: 1px solid grey;
+ }
+
+ table tr:hover {
+   background-color: rgb(221, 221, 221);
  }
 
  td{
-   height: 2.5vh;
+   height: 2vh;
+   font-size: 25px;
+   font-weight: bold;
+   padding-top: 5px;
+ }
+
+ .left-td{
+   text-align: center ;
+ }
+
+ .right-td{
+   text-align: left;
+ }
+
+ caption{
+   font-size: 30px;
+   font-weight: bold;
+   background-color: lightskyblue;
+   padding-top: 20px;
+   padding-bottom: 20px;
+   border-top-left-radius: 20px;
+   border-top-right-radius: 20px
  }
 </style>
