@@ -1,5 +1,5 @@
 module.exports = {
   devServer: {
-    proxy: 'http://localhost:3000/data'
+    proxy: 'http://localhost:8080/champ'
   }
 }

@@ -34,7 +34,7 @@ export default {
   methods: {
     async fetchData(){
       try{
-        let response = await fetch("http://localhost:3000/data")
+        let response = await fetch("http://localhost:8080/champ")
         let json = await response.json()
         console.log(json)
         this.champions = json    

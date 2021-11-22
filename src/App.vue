@@ -34,7 +34,7 @@ export default {
     async getDetailInfo(id){
             if(id != this.champDetails.id){
                 try{
-                    let response = await fetch("http://localhost:3000/data/"+id)
+                    let response = await fetch("http://localhost:8080/champ/"+id)
                     let json = await response.json()
                     console.log(json)
                     this.champDetails = json
