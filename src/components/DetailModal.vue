@@ -55,7 +55,6 @@
         </div>
     </div>
     
-    
 </template>
 
 <script>
@@ -89,10 +88,16 @@ export default ({
         },
 
         save(){
+            let health =  document.getElementById("health")
+            console.log(health.value)
             
+            console.log(this.detailInfo)
+
+           
 
             this.cancelEdit()
         },
+
         async clickedDelete(id){
           let response = await fetch("http://localhost:8080/champ/" + id, {
             method: 'DELETE',
@@ -101,7 +106,20 @@ export default ({
             }
           });
           console.log(response)
+        },
 
+
+        post(){
+            const requestOptions = {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(this.detailInfo)
+            };
+
+            fetch("https://jsonplaceholder.typicode.com/posts", requestOptions)
+                .then(response => response.json())
+                .then(data => console.log("post:",data));
+            
         }
 
 
