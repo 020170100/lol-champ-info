@@ -3,7 +3,7 @@
         <div class="modal">
             <h2>{{detailInfo.name}}</h2>
             <div class="data-wrapper">
-                <img :src="detailInfo.big_image_url" alt="big image">
+                <img :src="detailInfo.big_img_url" alt="big image">
                 <div class="data-table">
                     <table>
                         <tbody>
@@ -12,7 +12,7 @@
                                     <label for="health">Health:</label>
                                 </td>
                                 <td>
-                                    <input id="health" type="number" :value="detailInfo.hp" :disabled = editable>
+                                    <input id="health" type="number" :value="detailInfo.health" :disabled = editable>
                                 </td>
                             </tr>
                             <tr>
@@ -20,7 +20,7 @@
                                     <label for="mana">Mana:</label>
                                 </td>
                                 <td>
-                                    <input id="mana" type="number" :value="detailInfo.mp" :disabled = editable>
+                                    <input id="mana" type="number" :value="detailInfo.mana" :disabled = editable>
                                 </td>
                             </tr>
                             <tr>
@@ -29,14 +29,6 @@
                                 </td>
                                 <td>
                                     <input id="armor" type="number" :value="detailInfo.armor" :disabled = editable><br>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="spellblock">spellblock:</label>
-                                </td>
-                                <td>
-                                    <input id="spellblock" type="number" :value="detailInfo.spellblock" :disabled = editable><br>
                                 </td>
                             </tr>
                             <tr>

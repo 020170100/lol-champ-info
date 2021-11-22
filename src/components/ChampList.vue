@@ -5,7 +5,7 @@
       <tbody>
         <tr class="champ-rows" v-for="champ in champions" :key="champ.name" @click="$emit('open-modal', champ.id)">
             <td class="left-td">
-              <img :src="champ.image_url">
+              <img :src="champ.img_url">
             </td>
             <td class="right-td">{{champ.name}}</td>
         </tr>
