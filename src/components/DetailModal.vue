@@ -2,65 +2,63 @@
     <div class="modal-wrapper">
         <div class="modal">
             <h2>{{detailInfo.name}}</h2>
-            <div>
+            <div class="data-wrapper">
                 <img :src="detailInfo.big_image_url" alt="big image">
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <label for="health">Health:</label>
-                            </td>
-                            <td>
-                                <input id="health" type="number" :value="detailInfo.hp">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="health">Mana:</label>
-                            </td>
-                            <td>
-                                <input id="health" type="number" :value="detailInfo.mp">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="health">Armor:</label>
-                            </td>
-                            <td>
-                                <input id="health" type="number" :value="detailInfo.armor"><br>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                 <label for="health">spellblock:</label>
-                            </td>
-                            <td>
-                                <input id="health" type="number" :value="detailInfo.spellblock"><br>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="health">Attack Damage:</label>
-                            </td>
-                            <td>
-                                <input id="health" type="number" :value="detailInfo.attackdamage"><br>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                
-                
-                
-               
-                
-                
-                
-               
-                
-                
-                
+                <div class="data-table">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label for="health">Health:</label>
+                                </td>
+                                <td>
+                                    <input id="health" type="number" :value="detailInfo.hp" :disabled = editable>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="mana">Mana:</label>
+                                </td>
+                                <td>
+                                    <input id="mana" type="number" :value="detailInfo.mp" :disabled = editable>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="armor">Armor:</label>
+                                </td>
+                                <td>
+                                    <input id="armor" type="number" :value="detailInfo.armor" :disabled = editable><br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="spellblock">spellblock:</label>
+                                </td>
+                                <td>
+                                    <input id="spellblock" type="number" :value="detailInfo.spellblock" :disabled = editable><br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="attackdamage">Attack Damage:</label>
+                                </td>
+                                <td>
+                                    <input id="attackdamage" type="number" :value="detailInfo.attackdamage" :disabled = editable><br>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <button @click="$emit('close-modal')">Close</button>
+            <div v-show="showNormalBtns" class="btn-row">
+                <button @click="$emit('close-modal')">Close</button>
+                <button @click="clickedEdit">Edit</button>
+            </div>
+            <div v-show="showEditBtns" class="btn-row">
+                <button @click="cancelEdit">Cancel</button>
+                <button @click="save">Save</button>
+            </div>
         </div>
     </div>
     
@@ -70,7 +68,38 @@
 <script>
 export default ({
     name: 'DetailModal',
-    props: ['detailInfo'],  
+    props: ['detailInfo'],
+
+    data:function(){
+        return{
+            editable : true,
+            showEditBtns : false,
+            showNormalBtns : true
+        }
+    },
+
+    methods:{
+
+        clickedEdit(){
+            this.editable = false
+            this.showNormalBtns = false
+            this.showEditBtns = true
+
+        },
+
+        cancelEdit(){
+            this.editable = true
+            this.showNormalBtns = true
+            this.showEditBtns = false
+        },
+
+        save(){
+            
+
+            this.cancelEdit()
+        }
+
+    }
 })
 </script>
 
@@ -89,15 +118,19 @@ export default ({
     .modal {
         background-color: white;
         text-align: center;
-        height: 500px;
+        height: 600px;
         width: 500px;
         margin-top: 10%;
-        padding: 60px 0;
+        padding-top: 10px;
         border-radius: 20px;
     }
 
     img {
         height: 35%;
         width: 35%;
+    }
+
+    .data-table table{
+        margin: auto;
     }
 </style>
