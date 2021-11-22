@@ -46,6 +46,7 @@
             <div v-show="showNormalBtns" class="btn-row">
                 <button @click="$emit('close-modal')">Close</button>
                 <button @click="clickedEdit">Edit</button>
+                <button @click="clickedDelete(detailInfo.id), $emit('close-modal')">Delete</button>
             </div>
             <div v-show="showEditBtns" class="btn-row">
                 <button @click="cancelEdit">Cancel</button>
@@ -58,6 +59,8 @@
 </template>
 
 <script>
+
+
 export default ({
     name: 'DetailModal',
     props: ['detailInfo'],
@@ -89,7 +92,18 @@ export default ({
             
 
             this.cancelEdit()
+        },
+        async clickedDelete(id){
+          let response = await fetch("http://localhost:8080/champ/" + id, {
+            method: 'DELETE',
+            headers: {
+              'Content-type': 'application/json'
+            }
+          });
+          console.log(response)
+
         }
+
 
     }
 })

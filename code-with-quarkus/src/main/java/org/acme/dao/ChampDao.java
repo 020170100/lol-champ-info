@@ -33,7 +33,7 @@ public class ChampDao {
 
     public Champion deleteChampion(int id){
         Champion c = getById(id);
-        em.detach(c);
+        em.remove(c);
         return c;
     }
 }
