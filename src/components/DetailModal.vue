@@ -3,12 +3,62 @@
         <div class="modal">
             <h2>{{detailInfo.name}}</h2>
             <div>
-                <img :src="detailInfo.big_image_url" alt="big image"><br>
-                <span>Healh: {{detailInfo.hp}}</span><br>
-                <span>Mana: {{detailInfo.mp}}</span><br>
-                <span>Armor: {{detailInfo.armor}}</span><br>                
-                <span>Magic Resistance: {{detailInfo.spellblock}}</span><br>
-                <span>AD: {{detailInfo.attackdamage}}</span>
+                <img :src="detailInfo.big_image_url" alt="big image">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="health">Health:</label>
+                            </td>
+                            <td>
+                                <input id="health" type="number" :value="detailInfo.hp">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="health">Mana:</label>
+                            </td>
+                            <td>
+                                <input id="health" type="number" :value="detailInfo.mp">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="health">Armor:</label>
+                            </td>
+                            <td>
+                                <input id="health" type="number" :value="detailInfo.armor"><br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                 <label for="health">spellblock:</label>
+                            </td>
+                            <td>
+                                <input id="health" type="number" :value="detailInfo.spellblock"><br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="health">Attack Damage:</label>
+                            </td>
+                            <td>
+                                <input id="health" type="number" :value="detailInfo.attackdamage"><br>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                
+                
+               
+                
+                
+                
+               
+                
+                
+                
             </div>
             <button @click="$emit('close-modal')">Close</button>
         </div>
