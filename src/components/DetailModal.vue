@@ -12,7 +12,7 @@
                                     <label for="health">Health:</label>
                                 </td>
                                 <td>
-                                    <input id="health" type="number" :value="detailInfo.health" :disabled = editable>
+                                    <input  id="health" type="number" :value="detailInfo.health" :disabled = editable>
                                 </td>
                             </tr>
                             <tr>
