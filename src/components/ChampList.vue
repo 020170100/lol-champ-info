@@ -1,9 +1,10 @@
 <template>
 <div>
+    <detail-modal :detailInfo = "champDetails" v-show="displayModal" @close-modal="displayModal = false"></detail-modal>
     <table>
       <caption>League of Legends Champions</caption>
       <tbody>
-        <tr class="champ-rows" v-for="champ in champions" :key="champ.name" @click="$emit('open-modal', champ.id)">
+        <tr class="champ-rows" v-for="champ in champions" :key="champ.name" @click="showDetail(champ.id)">
             <td class="left-td">
               <img :src="champ.img_url">
             </td>
@@ -17,8 +18,13 @@
 
 <script>
 
+import DetailModal from "./DetailModal.vue"
 export default {
   name: 'ChampList',
+
+  components: {
+    DetailModal
+  },
 
   created: function(){
       this.fetchData()
@@ -27,6 +33,9 @@ export default {
   data: function(){
     return {
       champions: [],
+      displayModal: false,
+      champId: "",
+      champDetails: [],
     };
   },
 
@@ -42,6 +51,28 @@ export default {
         console.log(e)
       }
     },
+
+    showDetail(id){
+        this.displayModal = true
+        this.champId = id
+        this.getDetailInfo(id)
+        console.log("i was here!", this.champId, id)        
+    },
+    
+    async getDetailInfo(id){
+            if(id != this.champDetails.id){
+                try{
+                    let response = await fetch("http://localhost:8080/champ/"+id)
+                    let json = await response.json()
+                    console.log(json)
+                    this.champDetails = json
+                    console.log(this.champDetails.name)
+                }catch(e){
+                    console.log(e)
+                }   
+            }
+        }
+
   },
 }
 </script>
